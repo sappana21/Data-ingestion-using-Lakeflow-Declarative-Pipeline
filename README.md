@@ -8,8 +8,6 @@ This project demonstrates an automated data ingestion pipeline built using **Dat
 
 ## Features
 
-- Automated data ingestion
-- Incremental data processing
 - Medallion Architecture implementation
 - Data quality and transformation
 - Scalable ETL pipeline
@@ -52,7 +50,6 @@ Incoming Data
 1. Raw sales data is ingested into the Bronze layer.
 2. Data is cleaned and transformed in the Silver layer.
 3. Business-ready datasets are generated in the Gold layer.
-4. Incremental processing ensures only new data is processed.
 
 ---
 
@@ -73,7 +70,6 @@ Lakeflow-Data-Ingestion/
 
 - Data Engineering
 - ETL Pipeline Development
-- Incremental Data Processing
 - Delta Lake
 - PySpark
 - Lakeflow Declarative Pipelines
