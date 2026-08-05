@@ -1,0 +1,27 @@
+from pyspark import pipelines as dp
+from pyspark.sql.functions import *
+
+@dp.table
+def bronze_routes():
+    return (
+        spark.read.format("csv")
+        ..option("header","true")
+        .option("inferSchema","true")
+        .load("/Volumes/my_catalog/default/my_volume/routes.csv")
+    )
+
+@dp.table
+def silver_routes():
+    return (
+        dp.read("bronze_routes")
+        .dropDuplicates(["route_id"])
+        .dropna()
+    )
+
+@dp.table
+def gold_route_summary():
+    return (
+        dp.read("silver_routes")
+        .groupBy("origin")
+        .agg(avg("distance_km").alias("avg_distance"))
+    )
